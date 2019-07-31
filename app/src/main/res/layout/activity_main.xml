@@ -5,29 +5,69 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.luffy.util.marqueetextview.MarqueeTextView
+    <com.luffy.util.marqueetext.MarqueeTextView
         android:id="@+id/mt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_light"
+        android:background="@android:color/darker_gray"
         android:text="测试修改文本属性"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:pixelHeight="96" />
 
-    <com.luffy.util.marqueetextview.MarqueeTextView
+    <com.luffy.util.marqueetext.MarqueeTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:text="测试多个滚动1"
+        android:background="@color/red"
+        android:text="测试多个滚动"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
-    <com.luffy.util.marqueetextview.MarqueeTextView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="测试多个滚动2"
+    <com.luffy.util.marqueetext.MarqueeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:text="测试多个滚动"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <com.luffy.util.marqueetext.MarqueeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        android:text="测试多个滚动"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <com.luffy.util.marqueetext.MarqueeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:text="测试多个滚动"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <com.luffy.util.marqueetext.MarqueeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/cyan"
+        android:text="测试多个滚动"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <com.luffy.util.marqueetext.MarqueeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:text="测试多个滚动"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <com.luffy.util.marqueetext.MarqueeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/purple"
+        android:text="测试多个滚动"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
@@ -48,6 +88,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="修改颜色" />
+
+    <Button
+        android:id="@+id/setColorful"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设置炫彩" />
 
     <Button
         android:id="@+id/changeMode"

@@ -2,12 +2,12 @@ package com.luffy.util.marqueetext;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import com.luffy.util.marqueetextview.MarqueeTextView;
 
 import java.util.Random;
 
@@ -19,8 +19,11 @@ public class MainActivity extends AppCompatActivity {
     Button changeInterval;
     Button changeFont;
     Button changeColor;
+    Button setColorful;
+
     int mode = 1;
     int font = 1;
+    boolean isColorful;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         changeInterval = findViewById(R.id.changeInterval);
         changeFont = findViewById(R.id.changeFont);
         changeColor = findViewById(R.id.changeColor);
+        setColorful = findViewById(R.id.setColorful);
         changeText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,10 +65,10 @@ public class MainActivity extends AppCompatActivity {
                 int num = random.nextInt(5);
                 switch (num) {
                     case 0:
-                        marqueeTextView.setColor(Color.RED);
+                        marqueeTextView.setColor(Color.WHITE);
                         break;
                     case 1:
-                        marqueeTextView.setColor(Color.RED);
+                        marqueeTextView.setColor(Color.BLACK);
                         break;
                     case 2:
                         marqueeTextView.setColor(Color.BLUE);
@@ -80,6 +84,18 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     default:
                         break;
+                }
+            }
+        });
+        setColorful.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isColorful) {
+                    marqueeTextView.startColorful();
+                    isColorful = true;
+                } else {
+                    marqueeTextView.stopColorful();
+                    isColorful = false;
                 }
             }
         });

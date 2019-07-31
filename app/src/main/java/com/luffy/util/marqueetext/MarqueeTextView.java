@@ -1,4 +1,4 @@
-package com.luffy.util.marqueetextview;
+package com.luffy.util.marqueetext;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -170,7 +170,22 @@ public class MarqueeTextView extends TextView {
         paint.setColor(marqueeTextColor);
     }
 
-    public void startColorful(final int[] color) {
+    public void startColorful(int[] color) {
+        // 自定义颜色
+        setColorful(color);
+    }
+
+    public void startColorful() {
+        // 默认使用七彩
+        int[] color = new int[]{Color.parseColor("#FF0000"),
+                Color.parseColor("#FF6600"), Color.parseColor("#FFFF66"),
+                Color.parseColor("#00CC00"), Color.parseColor("#669999"),
+                Color.parseColor("#0066CC"), Color.parseColor("#990099"),
+        };
+        setColorful(color);
+    }
+
+    private void setColorful(final int[] color) {
         colorfulIndex = 0;
         ese = Executors.newSingleThreadScheduledExecutor();
         ese.scheduleAtFixedRate(new Runnable() {
@@ -179,26 +194,6 @@ public class MarqueeTextView extends TextView {
                 paint.setColor(color[colorfulIndex]);
                 colorfulIndex++;
                 if (colorfulIndex == color.length) {
-                    colorfulIndex = 0;
-                }
-            }
-        }, 200, 200, TimeUnit.MILLISECONDS);
-    }
-
-    public void startColorful() {
-        colorfulIndex = 0;
-        ese = Executors.newSingleThreadScheduledExecutor();
-        final int[] colorful = new int[]{Color.parseColor("#FF0000"),
-                Color.parseColor("#FF6600"), Color.parseColor("#FFFF66"),
-                Color.parseColor("#00CC00"), Color.parseColor("#669999"),
-                Color.parseColor("#0066CC"), Color.parseColor("#990099"),
-        };
-        ese.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                paint.setColor(colorful[colorfulIndex]);
-                colorfulIndex++;
-                if (colorfulIndex == colorful.length) {
                     colorfulIndex = 0;
                 }
             }

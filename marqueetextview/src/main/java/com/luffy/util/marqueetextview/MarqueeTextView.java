@@ -159,6 +159,7 @@ public class MarqueeTextView extends TextView {
 
     public void setFont(Typeface marqueeTextFont) {
         paint.setTypeface(marqueeTextFont);
+        setDrawText();
     }
 
     public void setSpeed(float marqueeTextSpeed) {

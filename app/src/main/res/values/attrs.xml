@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <attr name="pixelWidth" format="integer" />
-    <attr name="pixelHeight" format="integer" />
-    <declare-styleable name="MarqueeTextView">
-        <attr name="pixelWidth" />
-        <attr name="pixelHeight" />
-    </declare-styleable>
-</resources>

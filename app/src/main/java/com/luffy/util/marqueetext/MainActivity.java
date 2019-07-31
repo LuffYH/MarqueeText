@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.luffy.util.marqueetextview.MarqueeTextView;
+
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {

@@ -76,6 +76,7 @@ public class MarqueeTextView extends TextView {
 
     public MarqueeTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
         this.context = context;
 
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.MarqueeTextView, 0, 0);
@@ -85,6 +86,7 @@ public class MarqueeTextView extends TextView {
         } else {
             setDrawText();
         }
+
         textColor = getCurrentTextColor();
         textSize = getTextSize();
 
@@ -95,7 +97,6 @@ public class MarqueeTextView extends TextView {
         paint.setTextSize(textSize);
         paint.setColor(textColor);
 
-        // 获得绘制文本的宽和高
         rect = new Rect();
         paint.getTextBounds(drawText, 0, drawText.length(), rect);
     }

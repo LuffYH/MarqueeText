@@ -15,101 +15,151 @@
         android:textSize="16sp"
         app:pixelHeight="96" />
 
-    <com.luffy.util.marqueetext.MarqueeTextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/red"
-        android:text="测试多个滚动"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:orientation="horizontal">
+
+        <com.luffy.util.marqueetext.MarqueeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/red"
+            android:text="测试多个滚动"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <com.luffy.util.marqueetext.MarqueeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/orange"
+            android:text="测试多个滚动"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <com.luffy.util.marqueetext.MarqueeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/yellow"
+            android:text="测试多个滚动"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <com.luffy.util.marqueetext.MarqueeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/green"
+            android:text="测试多个滚动"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.luffy.util.marqueetext.MarqueeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/cyan"
+            android:text="测试多个滚动"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <com.luffy.util.marqueetext.MarqueeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:text="测试多个滚动"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <com.luffy.util.marqueetext.MarqueeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/purple"
+            android:text="测试多个滚动"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <com.luffy.util.marqueetext.MarqueeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:text="测试多个滚动"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <com.luffy.util.marqueetext.MarqueeTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/orange"
-        android:text="测试多个滚动"
+        android:id="@+id/mt2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        android:text="测试垂直滚动测试垂直滚动测试垂直滚动测试垂直滚动测试垂直滚动"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:direction="1"
+        app:pixelHeight="500" />
 
-    <com.luffy.util.marqueetext.MarqueeTextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/yellow"
-        android:text="测试多个滚动"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:orientation="horizontal">
 
-    <com.luffy.util.marqueetext.MarqueeTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/green"
-        android:text="测试多个滚动"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        <Button
+            android:id="@+id/changeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改文字" />
 
-    <com.luffy.util.marqueetext.MarqueeTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/cyan"
-        android:text="测试多个滚动"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        <Button
+            android:id="@+id/changeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改字体" />
 
-    <com.luffy.util.marqueetext.MarqueeTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:text="测试多个滚动"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        <Button
+            android:id="@+id/changeColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改颜色" />
 
-    <com.luffy.util.marqueetext.MarqueeTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/purple"
-        android:text="测试多个滚动"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        <Button
+            android:id="@+id/setColorful"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置炫彩" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/changeText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="修改文字" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/changeFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="修改字体" />
+        <Button
+            android:id="@+id/changeMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改模式" />
 
-    <Button
-        android:id="@+id/changeColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="修改颜色" />
+        <Button
+            android:id="@+id/changeSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改速度" />
 
-    <Button
-        android:id="@+id/setColorful"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="设置炫彩" />
+        <Button
+            android:id="@+id/changeInterval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改间隔" />
 
-    <Button
-        android:id="@+id/changeMode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="修改模式" />
-
-    <Button
-        android:id="@+id/changeSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="修改速度" />
-
-    <Button
-        android:id="@+id/changeInterval"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="修改间隔" />
+        <Button
+            android:id="@+id/changeTextNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单行字数" />
+    </LinearLayout>
 </LinearLayout>

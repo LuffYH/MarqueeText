@@ -13,6 +13,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     MarqueeTextView marqueeTextView;
+    MarqueeTextView marqueeTextView2;
     Button changeText;
     Button changeMode;
     Button changeSpeed;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button changeFont;
     Button changeColor;
     Button setColorful;
+    Button changeTextNum;
 
     int mode = 1;
     int font = 1;
@@ -30,13 +32,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         marqueeTextView = findViewById(R.id.mt);
+        marqueeTextView2 = findViewById(R.id.mt2);
         changeText = findViewById(R.id.changeText);
         changeMode = findViewById(R.id.changeMode);
         changeSpeed = findViewById(R.id.changeSpeed);
         changeInterval = findViewById(R.id.changeInterval);
         changeFont = findViewById(R.id.changeFont);
         changeColor = findViewById(R.id.changeColor);
+        changeTextNum = findViewById(R.id.changeTextNum);
         setColorful = findViewById(R.id.setColorful);
+        changeTextNum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Random random = new Random();
+                int num = random.nextInt(15);
+                if (num < 5) {
+                    num += 5;
+                }
+                marqueeTextView2.setTextNum(num);
+            }
+        });
         changeText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,13 +117,13 @@ public class MainActivity extends AppCompatActivity {
         changeMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mode == 1) {
-                    mode = 2;
-                    marqueeTextView.setMode(mode);
+                if (mode == MarqueeTextView.ALONE) {
+                    mode = MarqueeTextView.MULTIPLE;
                 } else {
-                    mode = 1;
-                    marqueeTextView.setMode(mode);
+                    mode = MarqueeTextView.ALONE;
                 }
+                marqueeTextView.setMode(mode);
+                marqueeTextView2.setMode(mode);
             }
         });
         changeSpeed.setOnClickListener(new View.OnClickListener() {

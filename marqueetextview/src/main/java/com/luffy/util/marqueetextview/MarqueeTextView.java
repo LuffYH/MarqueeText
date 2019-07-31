@@ -12,21 +12,34 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * @author luffy
+ */
 @SuppressLint("AppCompatCustomView")
 public class MarqueeTextView extends TextView {
+    public static final int ALONE = 1;
+    public static final int MULTIPLE = 2;
+    public static final int VERTICAL = 1;
+    public static final int HORIZONTAL = 2;
     /**
      * 获取的文字
      */
-    private String text = "";
+    private String text;
     /**
      * 需要绘制的文字
      */
-    private String drawText = "";
+    private String horizontalDrawText = "";
+    /**
+     * 需要绘制的文字
+     */
+    private List<String> verticalDrawText;
+    private List<String> stringListCache;
     /**
      * 文本的颜色
      */
@@ -54,11 +67,20 @@ public class MarqueeTextView extends TextView {
     /**
      * 滚动模式
      */
-    private int mode = 1;
+    private int mode = ALONE;
     /**
-     * 滚动2时触发效果的临界点
+     * 滚动方向
      */
-    private float moveMeasured;
+    private int direction;
+    /**
+     * 滚动2时触发效果的临界点Width
+     */
+    private float moveMeasuredWidth;
+    private float moveMeasuredHeight;
+    /**
+     * 每行字数
+     */
+    private int textNum = 10;
     /**
      * 滚动2时的间隔
      */
@@ -68,9 +90,7 @@ public class MarqueeTextView extends TextView {
      */
     private int colorfulIndex;
     private ScheduledExecutorService ese;
-
-
-    private Rect rect;
+    private Rect rect = new Rect();
     private Paint paint;
     private Context context;
 
@@ -80,25 +100,21 @@ public class MarqueeTextView extends TextView {
         this.context = context;
 
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.MarqueeTextView, 0, 0);
-        text = getText().toString();
-        if (mode == 1) {
-            drawText = text;
-        } else {
-            setDrawText();
-        }
+        height = typedArray.getInteger(R.styleable.MarqueeTextView_pixelHeight, -1);
+        width = typedArray.getInteger(R.styleable.MarqueeTextView_pixelWidth, -1);
+        direction = typedArray.getInteger(R.styleable.MarqueeTextView_direction, HORIZONTAL);
 
         textColor = getCurrentTextColor();
         textSize = getTextSize();
-
-        height = typedArray.getInteger(R.styleable.MarqueeTextView_pixelHeight, -1);
-        width = typedArray.getInteger(R.styleable.MarqueeTextView_pixelWidth, -1);
 
         paint = new Paint();
         paint.setTextSize(textSize);
         paint.setColor(textColor);
 
-        rect = new Rect();
-        paint.getTextBounds(drawText, 0, drawText.length(), rect);
+        text = getText().toString();
+        setDrawText();
+
+        paint.getTextBounds(horizontalDrawText, 0, horizontalDrawText.length(), rect);
     }
 
     @Override
@@ -142,21 +158,12 @@ public class MarqueeTextView extends TextView {
 
     public void setText(String marqueeText) {
         this.text = marqueeText;
-        if (mode == 2) {
-            setDrawText();
-        } else {
-            drawText = text;
-        }
+        setDrawText();
     }
 
     public void setMode(int marqueeTextMode) {
         this.mode = marqueeTextMode;
-        if (mode == 2) {
-            setDrawText();
-        } else {
-            drawText = text;
-
-        }
+        setDrawText();
     }
 
     public void setSize(int marqueeTextSize) {
@@ -217,44 +224,108 @@ public class MarqueeTextView extends TextView {
     }
 
     public void setStep(int level) {
-        if (mode == 2) {
+        if (mode == MULTIPLE) {
             StringBuilder stringBuilder = new StringBuilder();
-            for (int i = 0; i < level * 5; i++) {
-                stringBuilder.append(" ");
+            for (int i = 0; i < level; i++) {
+                stringBuilder.append("     ");
             }
             step = stringBuilder.toString();
             setDrawText();
         }
     }
 
+    public void setTextNum(int num) {
+        textNum = num;
+        setDrawText();
+    }
+
     private void setDrawText() {
-        String str = text + step;
-        moveMeasured = paint.measureText(str);
-        int stepNum = (int) (width % moveMeasured);
-        StringBuilder builder = new StringBuilder();
-        builder.append(text);
-        for (int i = 0; i < stepNum; i++) {
-            builder.append(step).append(text);
+        if (direction == VERTICAL) {
+            stringListCache = new ArrayList<>();
+            int lenght = text.length();
+            if (lenght > textNum) {
+                int size;
+                if (lenght % textNum > 0) {
+                    size = lenght / textNum + 1;
+                } else {
+                    size = lenght / textNum;
+                }
+                for (int i = 0; i < size; i++) {
+                    if (i == size - 1) {
+                        stringListCache.add(text.substring(i * textNum));
+                    } else {
+                        stringListCache.add(text.substring(i * textNum, (i + 1) * textNum));
+                    }
+                }
+            }
+            paint.getTextBounds(text, 0, text.length(), rect);
+            moveMeasuredWidth = paint.measureText(stringListCache.get(0));
+            moveMeasuredHeight = rect.height();
+            verticalDrawText = new ArrayList<>();
+            verticalDrawText.addAll(stringListCache);
+            if (mode == MULTIPLE) {
+                stringListCache.add(0, "");
+                stringListCache.add(0, "");
+                stringListCache.add(0, "");
+                stringListCache.add(0, "");
+                stringListCache.add(0, "");
+                int stepNum = (int) (height / moveMeasuredHeight) + 1;
+                for (int i = 0; i < stepNum; i++) {
+                    verticalDrawText.addAll(stringListCache);
+                }
+            }
+        } else {
+            if (mode == MULTIPLE) {
+                String str = text + step;
+                moveMeasuredWidth = paint.measureText(str);
+                int stepNum = (int) (width / moveMeasuredWidth) + 1;
+                StringBuilder builder = new StringBuilder();
+                builder.append(text);
+                for (int i = 0; i < stepNum; i++) {
+                    builder.append(step).append(text);
+                }
+                horizontalDrawText = builder.toString();
+            } else {
+                horizontalDrawText = text;
+            }
+            paint.getTextBounds(horizontalDrawText, 0, horizontalDrawText.length(), rect);
         }
-        drawText = builder.toString();
         System.gc();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        paint.getTextBounds(drawText, 0, drawText.length(), rect);
-        int height = getHeight() / 2;
-        int measuredWidth = getMeasuredWidth();
-        float y = height + (-paint.ascent() + paint.descent()) / 2 - paint.descent();
-        canvas.drawText(drawText, measuredWidth - move, y, paint);
-        move += textSpeed;
-        if (mode == 2) {
-            if (move >= measuredWidth + moveMeasured) {
-                move = measuredWidth;
+        if (direction == VERTICAL) {
+            float x = (getMeasuredWidth() - moveMeasuredWidth) / 2;
+            int measuredHeight = getMeasuredHeight();
+            for (int i = 0; i < verticalDrawText.size(); i++) {
+                float y = measuredHeight + (i * moveMeasuredHeight) - move;
+                canvas.drawText(verticalDrawText.get(i), x, y, paint);
+            }
+            move += textSpeed;
+            if (mode == MULTIPLE) {
+                if (move >= measuredHeight + moveMeasuredHeight * stringListCache.size()) {
+                    move = measuredHeight;
+                }
+            } else {
+                if (move >= measuredHeight + moveMeasuredHeight * stringListCache.size()) {
+                    move = 0f;
+                }
             }
         } else {
-            if (move >= measuredWidth + rect.width()) {
-                move = 0f;
+            int height = getHeight() / 2;
+            int measuredWidth = getMeasuredWidth();
+            float y = height + (-paint.ascent() + paint.descent()) / 2 - paint.descent();
+            canvas.drawText(horizontalDrawText, measuredWidth - move, y, paint);
+            move += textSpeed;
+            if (mode == MULTIPLE) {
+                if (move >= measuredWidth + moveMeasuredWidth) {
+                    move = measuredWidth;
+                }
+            } else {
+                if (move >= measuredWidth + rect.width()) {
+                    move = 0f;
+                }
             }
         }
         invalidate();

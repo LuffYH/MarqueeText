@@ -142,6 +142,7 @@ public class MarqueeTextView extends TextView {
             setDrawText();
         } else {
             drawText = text;
+
         }
     }
 

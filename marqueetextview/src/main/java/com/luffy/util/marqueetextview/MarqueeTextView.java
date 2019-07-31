@@ -149,6 +149,7 @@ public class MarqueeTextView extends TextView {
     public void setSize(int marqueeTextSize) {
         textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, marqueeTextSize, context.getResources().getDisplayMetrics());
         paint.setTextSize(textSize);
+        setDrawText();
     }
 
     public void setColor(int marqueeTextColor) {

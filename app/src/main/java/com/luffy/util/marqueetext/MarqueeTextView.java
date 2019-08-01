@@ -260,6 +260,8 @@ public class MarqueeTextView extends TextView {
                         verticalDrawTextCache.add(text.substring(i * textNum, (i + 1) * textNum));
                     }
                 }
+            } else {
+                verticalDrawTextCache.add(text);
             }
             paint.getTextBounds(text, 0, text.length(), rect);
             moveMeasuredWidth = paint.measureText(verticalDrawTextCache.get(0));

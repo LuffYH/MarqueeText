@@ -9,6 +9,6 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    implementation 'com.github.LuffYH:MarqueeText:1.0.1'
+    implementation 'com.github.LuffYH:MarqueeText:tag'
 }
 ```

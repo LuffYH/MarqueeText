@@ -39,7 +39,8 @@ public class MarqueeTextView extends TextView {
      * 需要绘制的文字
      */
     private List<String> verticalDrawText;
-    private List<String> stringListCache;
+    private int verticalDrawTextSize;
+
     /**
      * 文本的颜色
      */
@@ -69,13 +70,16 @@ public class MarqueeTextView extends TextView {
      */
     private int mode = ALONE;
     /**
-     * 滚动方向
+     * 移动方向
      */
     private int direction;
     /**
-     * 滚动2时触发效果的临界点Width
+     * 一段文字的宽度
      */
     private float moveMeasuredWidth;
+    /**
+     * 一段文字的长度
+     */
     private float moveMeasuredHeight;
     /**
      * 每行字数
@@ -84,7 +88,8 @@ public class MarqueeTextView extends TextView {
     /**
      * 滚动2时的间隔
      */
-    private String step = "     ";
+    private String horizontalStep = "     ";
+    private List<String> verticalStep;
     /**
      * 炫彩特效
      */
@@ -161,8 +166,17 @@ public class MarqueeTextView extends TextView {
         setDrawText();
     }
 
-    public void setMode(int marqueeTextMode) {
+    public void setMode(int marqueeTextMode, int level) {
         this.mode = marqueeTextMode;
+        if (mode == MULTIPLE) {
+            StringBuilder stringBuilder = new StringBuilder();
+            verticalStep = new ArrayList<>();
+            for (int i = 0; i < level; i++) {
+                stringBuilder.append("     ");
+                verticalStep.add("");
+            }
+            horizontalStep = stringBuilder.toString();
+        }
         setDrawText();
     }
 
@@ -223,17 +237,6 @@ public class MarqueeTextView extends TextView {
         textSpeed = marqueeTextSpeed;
     }
 
-    public void setStep(int level) {
-        if (mode == MULTIPLE) {
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int i = 0; i < level; i++) {
-                stringBuilder.append("     ");
-            }
-            step = stringBuilder.toString();
-            setDrawText();
-        }
-    }
-
     public void setTextNum(int num) {
         textNum = num;
         setDrawText();
@@ -241,7 +244,7 @@ public class MarqueeTextView extends TextView {
 
     private void setDrawText() {
         if (direction == VERTICAL) {
-            stringListCache = new ArrayList<>();
+            List<String> verticalDrawTextCache = new ArrayList<>();
             int lenght = text.length();
             if (lenght > textNum) {
                 int size;
@@ -252,37 +255,34 @@ public class MarqueeTextView extends TextView {
                 }
                 for (int i = 0; i < size; i++) {
                     if (i == size - 1) {
-                        stringListCache.add(text.substring(i * textNum));
+                        verticalDrawTextCache.add(text.substring(i * textNum));
                     } else {
-                        stringListCache.add(text.substring(i * textNum, (i + 1) * textNum));
+                        verticalDrawTextCache.add(text.substring(i * textNum, (i + 1) * textNum));
                     }
                 }
             }
             paint.getTextBounds(text, 0, text.length(), rect);
-            moveMeasuredWidth = paint.measureText(stringListCache.get(0));
+            moveMeasuredWidth = paint.measureText(verticalDrawTextCache.get(0));
             moveMeasuredHeight = rect.height();
             verticalDrawText = new ArrayList<>();
-            verticalDrawText.addAll(stringListCache);
+            verticalDrawText.addAll(verticalDrawTextCache);
             if (mode == MULTIPLE) {
-                stringListCache.add(0, "");
-                stringListCache.add(0, "");
-                stringListCache.add(0, "");
-                stringListCache.add(0, "");
-                stringListCache.add(0, "");
+                verticalDrawTextCache.addAll(0, verticalStep);
                 int stepNum = (int) (height / moveMeasuredHeight) + 1;
                 for (int i = 0; i < stepNum; i++) {
-                    verticalDrawText.addAll(stringListCache);
+                    verticalDrawText.addAll(verticalDrawTextCache);
                 }
             }
+            verticalDrawTextSize = verticalDrawTextCache.size();
         } else {
             if (mode == MULTIPLE) {
-                String str = text + step;
+                String str = text + horizontalStep;
                 moveMeasuredWidth = paint.measureText(str);
                 int stepNum = (int) (width / moveMeasuredWidth) + 1;
                 StringBuilder builder = new StringBuilder();
                 builder.append(text);
                 for (int i = 0; i < stepNum; i++) {
-                    builder.append(step).append(text);
+                    builder.append(horizontalStep).append(text);
                 }
                 horizontalDrawText = builder.toString();
             } else {
@@ -304,11 +304,11 @@ public class MarqueeTextView extends TextView {
             }
             move += textSpeed;
             if (mode == MULTIPLE) {
-                if (move >= measuredHeight + moveMeasuredHeight * stringListCache.size()) {
+                if (move >= measuredHeight + moveMeasuredHeight * verticalDrawTextSize) {
                     move = measuredHeight;
                 }
             } else {
-                if (move >= measuredHeight + moveMeasuredHeight * stringListCache.size()) {
+                if (move >= measuredHeight + moveMeasuredHeight * verticalDrawTextSize) {
                     move = 0f;
                 }
             }

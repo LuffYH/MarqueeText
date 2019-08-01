@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Button changeText;
     Button changeMode;
     Button changeSpeed;
-    Button changeInterval;
+  //  Button changeInterval;
     Button changeFont;
     Button changeColor;
     Button setColorful;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         changeText = findViewById(R.id.changeText);
         changeMode = findViewById(R.id.changeMode);
         changeSpeed = findViewById(R.id.changeSpeed);
-        changeInterval = findViewById(R.id.changeInterval);
+       // changeInterval = findViewById(R.id.changeInterval);
         changeFont = findViewById(R.id.changeFont);
         changeColor = findViewById(R.id.changeColor);
         changeTextNum = findViewById(R.id.changeTextNum);
@@ -122,8 +122,10 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     mode = MarqueeTextView.ALONE;
                 }
-                marqueeTextView.setMode(mode);
-                marqueeTextView2.setMode(mode);
+                Random random = new Random();
+                int num = random.nextInt(5);
+                marqueeTextView.setMode(mode, num);
+                marqueeTextView2.setMode(mode, num);
             }
         });
         changeSpeed.setOnClickListener(new View.OnClickListener() {
@@ -134,13 +136,11 @@ public class MainActivity extends AppCompatActivity {
                 marqueeTextView.setSpeed(num);
             }
         });
-        changeInterval.setOnClickListener(new View.OnClickListener() {
+       /* changeInterval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Random random = new Random();
-                int num = random.nextInt(5);
-                marqueeTextView.setStep(num);
+
             }
-        });
+        });*/
     }
 }

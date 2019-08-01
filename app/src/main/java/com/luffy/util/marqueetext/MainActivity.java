@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Button changeText;
     Button changeMode;
     Button changeSpeed;
-  //  Button changeInterval;
+    //  Button changeInterval;
     Button changeFont;
     Button changeColor;
     Button setColorful;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         changeText = findViewById(R.id.changeText);
         changeMode = findViewById(R.id.changeMode);
         changeSpeed = findViewById(R.id.changeSpeed);
-       // changeInterval = findViewById(R.id.changeInterval);
+        // changeInterval = findViewById(R.id.changeInterval);
         changeFont = findViewById(R.id.changeFont);
         changeColor = findViewById(R.id.changeColor);
         changeTextNum = findViewById(R.id.changeTextNum);
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Random random = new Random();
-                int num = random.nextInt(15);
+                int num = random.nextInt(30);
                 if (num < 5) {
                     num += 5;
                 }

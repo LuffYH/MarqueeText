@@ -118,8 +118,6 @@ public class MarqueeTextView extends TextView {
 
         text = getText().toString();
         setDrawText();
-
-        paint.getTextBounds(horizontalDrawText, 0, horizontalDrawText.length(), rect);
     }
 
     @Override
@@ -132,6 +130,7 @@ public class MarqueeTextView extends TextView {
             getDefaultHeight(heightMeasureSpec);
         }
         setMeasuredDimension(width, height);
+        setDrawText();
     }
 
     private void getDefaultWidth(int widthMeasureSpec) {
@@ -242,10 +241,23 @@ public class MarqueeTextView extends TextView {
         setDrawText();
     }
 
+    private void checkTextNum() {
+        if (width < 0) {
+            return;
+        }
+        String ss = text.substring(0, textNum);
+        float ssl = paint.measureText(ss);
+        if (ssl > width) {
+            textNum -= 2;
+            checkTextNum();
+        }
+    }
+
     private void setDrawText() {
         if (direction == VERTICAL) {
             List<String> verticalDrawTextCache = new ArrayList<>();
             int lenght = text.length();
+            checkTextNum();
             if (lenght > textNum) {
                 int size;
                 if (lenght % textNum > 0) {
@@ -299,33 +311,31 @@ public class MarqueeTextView extends TextView {
     protected void onDraw(Canvas canvas) {
         if (direction == VERTICAL) {
             float x = (getMeasuredWidth() - moveMeasuredWidth) / 2;
-            int measuredHeight = getMeasuredHeight();
             for (int i = 0; i < verticalDrawText.size(); i++) {
-                float y = measuredHeight + (i * moveMeasuredHeight) - move;
+                float y = height + (i * moveMeasuredHeight) - move;
                 canvas.drawText(verticalDrawText.get(i), x, y, paint);
             }
             move += textSpeed;
             if (mode == MULTIPLE) {
-                if (move >= measuredHeight + moveMeasuredHeight * verticalDrawTextSize) {
-                    move = measuredHeight;
+                if (move >= height + moveMeasuredHeight * verticalDrawTextSize) {
+                    move = height;
                 }
             } else {
-                if (move >= measuredHeight + moveMeasuredHeight * verticalDrawTextSize) {
+                if (move >= height + moveMeasuredHeight * verticalDrawTextSize) {
                     move = 0f;
                 }
             }
         } else {
             int height = getHeight() / 2;
-            int measuredWidth = getMeasuredWidth();
             float y = height + (-paint.ascent() + paint.descent()) / 2 - paint.descent();
-            canvas.drawText(horizontalDrawText, measuredWidth - move, y, paint);
+            canvas.drawText(horizontalDrawText, width - move, y, paint);
             move += textSpeed;
             if (mode == MULTIPLE) {
-                if (move >= measuredWidth + moveMeasuredWidth) {
-                    move = measuredWidth;
+                if (move >= width + moveMeasuredWidth) {
+                    move = width;
                 }
             } else {
-                if (move >= measuredWidth + rect.width()) {
+                if (move >= width + rect.width()) {
                     move = 0f;
                 }
             }

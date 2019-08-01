@@ -97,7 +97,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/darker_gray"
-        android:text="测试垂直滚动测试垂直滚动测试垂直滚动测试垂直滚动测试垂直滚动"
+        android:text="测试垂直滚动测试垂直滚动测试垂直滚动测试垂直滚动测试垂直滚动测试垂直滚动测试垂直滚动测试垂直滚动测试垂直滚动测试垂直滚动"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:direction="1"
@@ -151,10 +151,10 @@
             android:text="修改速度" />
 
         <!--<Button-->
-            <!--android:id="@+id/changeInterval"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="修改间隔" />-->
+        <!--android:id="@+id/changeInterval"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="修改间隔" />-->
 
         <Button
             android:id="@+id/changeTextNum"

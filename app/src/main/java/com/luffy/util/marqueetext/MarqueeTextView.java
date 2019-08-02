@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -158,6 +159,16 @@ public class MarqueeTextView extends TextView {
     @Override
     public boolean isFocused() {
         return true;
+    }
+
+    public void setPixelSize(int w, int h) {
+        if (w >= 0) {
+            width = w;
+        }
+        if (h >= 0) {
+            height = h;
+        }
+        setLayoutParams(getLayoutParams());
     }
 
     public void setText(String marqueeText) {

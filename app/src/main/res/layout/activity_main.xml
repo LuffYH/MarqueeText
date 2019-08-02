@@ -150,11 +150,11 @@
             android:layout_height="wrap_content"
             android:text="修改速度" />
 
-        <!--<Button-->
-        <!--android:id="@+id/changeInterval"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="修改间隔" />-->
+        <Button
+        android:id="@+id/changeViewSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="控件大小" />
 
         <Button
             android:id="@+id/changeTextNum"

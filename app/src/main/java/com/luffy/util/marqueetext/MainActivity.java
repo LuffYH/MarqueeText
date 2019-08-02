@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.Random;
 
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Button changeText;
     Button changeMode;
     Button changeSpeed;
-    //  Button changeInterval;
+    Button changeViewSize;
     Button changeFont;
     Button changeColor;
     Button setColorful;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         changeText = findViewById(R.id.changeText);
         changeMode = findViewById(R.id.changeMode);
         changeSpeed = findViewById(R.id.changeSpeed);
-        // changeInterval = findViewById(R.id.changeInterval);
+        changeViewSize = findViewById(R.id.changeViewSize);
         changeFont = findViewById(R.id.changeFont);
         changeColor = findViewById(R.id.changeColor);
         changeTextNum = findViewById(R.id.changeTextNum);
@@ -136,11 +138,11 @@ public class MainActivity extends AppCompatActivity {
                 marqueeTextView.setSpeed(num);
             }
         });
-       /* changeInterval.setOnClickListener(new View.OnClickListener() {
+        changeViewSize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                marqueeTextView2.setPixelSize(100, 100);
             }
-        });*/
+        });
     }
 }

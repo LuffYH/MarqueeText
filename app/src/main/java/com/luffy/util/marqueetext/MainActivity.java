@@ -2,14 +2,12 @@ package com.luffy.util.marqueetext;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+
+import com.luffy.util.marqueetextview.MarqueeTextView;
 
 import java.util.Random;
 
@@ -142,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 marqueeTextView2.setPixelSize(100, 100);
+                //marqueeTextView2.setDirection(MarqueeTextView.HORIZONTAL);
             }
         });
     }

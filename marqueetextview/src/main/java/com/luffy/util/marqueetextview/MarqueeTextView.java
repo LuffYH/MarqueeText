@@ -10,7 +10,6 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -171,6 +170,12 @@ public class MarqueeTextView extends TextView {
         setLayoutParams(getLayoutParams());
     }
 
+    public void setDirection(int d) {
+        direction = d;
+        setDrawText();
+    }
+
+
     public void setText(String marqueeText) {
         this.text = marqueeText;
         setDrawText();
@@ -191,7 +196,7 @@ public class MarqueeTextView extends TextView {
     }
 
     public void setSize(int marqueeTextSize) {
-        textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, marqueeTextSize, context.getResources().getDisplayMetrics());
+        textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, marqueeTextSize, context.getResources().getDisplayMetrics());
         paint.setTextSize(textSize);
         setDrawText();
     }

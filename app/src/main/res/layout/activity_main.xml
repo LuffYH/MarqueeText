@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.luffy.util.marqueetext.MarqueeTextView
+    <com.luffy.util.marqueetextview.MarqueeTextView
         android:id="@+id/mt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.luffy.util.marqueetext.MarqueeTextView
+        <com.luffy.util.marqueetextview.MarqueeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/red"
@@ -28,7 +28,7 @@
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
-        <com.luffy.util.marqueetext.MarqueeTextView
+        <com.luffy.util.marqueetextview.MarqueeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/orange"
@@ -36,7 +36,7 @@
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
-        <com.luffy.util.marqueetext.MarqueeTextView
+        <com.luffy.util.marqueetextview.MarqueeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/yellow"
@@ -44,7 +44,7 @@
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
-        <com.luffy.util.marqueetext.MarqueeTextView
+        <com.luffy.util.marqueetextview.MarqueeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/green"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.luffy.util.marqueetext.MarqueeTextView
+        <com.luffy.util.marqueetextview.MarqueeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/cyan"
@@ -67,7 +67,7 @@
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
-        <com.luffy.util.marqueetext.MarqueeTextView
+        <com.luffy.util.marqueetextview.MarqueeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/blue"
@@ -75,7 +75,7 @@
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
-        <com.luffy.util.marqueetext.MarqueeTextView
+        <com.luffy.util.marqueetextview.MarqueeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/purple"
@@ -83,7 +83,7 @@
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
-        <com.luffy.util.marqueetext.MarqueeTextView
+        <com.luffy.util.marqueetextview.MarqueeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/black"
@@ -92,7 +92,7 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <com.luffy.util.marqueetext.MarqueeTextView
+    <com.luffy.util.marqueetextview.MarqueeTextView
         android:id="@+id/mt2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
